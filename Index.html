@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOTSTORE-DZ | متجرك الإلكتروني المؤتمت في الجزائر</title>
+    <style>
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(to bottom, #38bdf8, #9333ea); color: white; min-height: 100vh; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+        .hero-text { flex: 1; min-width: 300px; text-align: right; margin-bottom: 2rem; }
+        .hero-text h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .hero-text p { font-size: 1.2rem; margin-bottom: 2rem; color: #e0f2fe; }
+        .btn { background: white; color: #9333ea; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .phone-mockup { flex: 1; min-width: 300px; display: flex; justify-content: center; }
+        .phone { width: 280px; height: 580px; background: #1f2937; border-radius: 40px; padding: 10px; border: 4px solid #111827; box-shadow: 0 20px 25px rgba(0,0,0,0.2); position: relative; }
+        .screen { width: 100%; height: 100%; background: #e5e7eb; border-radius: 30px; overflow: hidden; display: flex; flex-direction: column; padding: 15px; gap: 10px; overflow-y: auto; }
+        .msg { padding: 10px; border-radius: 10px; max-width: 80%; font-size: 14px; color: black; }
+        .bot { background: #dcfce7; align-self: flex-start; }
+        .user { background: #dbeafe; align-self: flex-end; text-align: left; }
+        .notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100px; height: 20px; background: #1f2937; border-radius: 0 0 15px 15px; z-index: 10; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero-text">
+            <h1>متجرك الإلكتروني المؤتمت بالكامل في الجزائر</h1>
+            <p>BOTSTORE-DZ: حلول الدروب شيبينغ الشرعي، أتمتة الطلبات عبر الواتساب، ونظام إحالات شبكي يغنيك عن الإعلانات المدفوعة.</p>
+            <a href="#" class="btn">ابدأ متجرك مجاناً</a>
+        </div>
+        
+        <div class="phone-mockup">
+            <div class="phone">
+                <div class="notch"></div>
+                <div class="screen" id="chat-screen">
+                    <!-- الرسائل ستظهر هنا تلقائياً -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const chatScript = [
+            { text: "أريد طلب هذا المنتج", type: "user" },
+            { text: "مرحباً بك! يرجى اختيار الولاية والبلدية وتأكيد رقم الهاتف لإتمام الطلب بنقرة واحدة.", type: "bot" },
+            { text: "الجزائر - بئر الجير / 0555******", type: "user" },
+            { text: "تم استلام طلبك بنجاح! سيتم التواصل معك لتأكيد الطلب. شكراً لاختياركم متجرنا.", type: "bot" }
+        ];
+
+        const chatScreen = document.getElementById('chat-screen');
+        let index = 0;
+
+        function addMessage() {
+            if (index < chatScript.length) {
+                const msgData = chatScript[index];
+                const msgDiv = document.createElement('div');
+                msgDiv.className = `msg ${msgData.type}`;
+                msgDiv.innerText = (msgData.type === 'bot' ? "🤖 Bot: " : "👤 العميل: ") + msgData.text;
+                chatScreen.appendChild(msgDiv);
+                chatScreen.scrollTop = chatScreen.scrollHeight;
+                index++;
+                setTimeout(addMessage, 2000);
+            }
+        }
+
+        // بدء المحادثة بعد ثانيتين من فتح الموقع
+        setTimeout(addMessage, 1000);
+    </script>
+</body>
+</html>
